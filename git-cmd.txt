@@ -1,0 +1,8 @@
+
+git checkout -b ＜new-branch＞
+git branch --show-current
+git remote add origin https://github.com/me50/segovelo.git
+git push -u origin ai50/projects/2020/x/degrees
+
+git checkout -b ai50/projects/2020/x/tictactoe
+git push -u origin ai50/projects/2020/x/tictactoe

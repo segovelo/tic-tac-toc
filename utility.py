@@ -1,45 +1,51 @@
 import sys
 # return -1 if "o" wins, 0 if nobody wins and 1 if "x" wins
 
-def check_row(rows):
-    for row in rows:
-        if row[0]==row[1] and row[1]==row[2] and row[0] in ["x","o"]:
+X = "x"
+O = "o"
+EMPTY = ""
+
+def check_rows(board):
+    for row in board:
+        if row[0]==row[1] and row[1]==row[2] and row[0] in [X,O]:
             return row[0]
-    return "n"
+    return None
 
-def check_column(rows):
-    for j in range(0,len(rows[0])):
-        if rows[0][j]==rows[1][j] and rows[1][j]==rows[2][j] and rows[0][j] in ["x","o"]:
-            return rows[0][j]
-    return "n"
+def check_columns(board):
+    for j in range(len(board[0])):
+        if board[0][j]==board[1][j] and board[1][j]==board[2][j] and board[0][j] in [X,O]:
+            return board[0][j]
+    return None
 
-def check_diagonal(rows):
+def check_diagonals(board):
     i = 0
     winner_found=False
-    for j in range(0,len(rows[0])-1):
-        if rows[j][j]==rows[j+1][j+1] and rows[j][j] in ["x","o"]:
+    for j in range(len(board[0])-1):
+        if board[j][j]==board[j+1][j+1] and board[j][j] in [X,O]:
             winner_found=True
         else:
             winner_found=False
             break
-    if winner_found: return rows[0][0]
+    if winner_found: return board[0][0]
     winner_found=False
-    for j in range(len(rows[0])-1, 0, -1):
-        if rows[len(rows[0])-j-1][j]==rows[len(rows[0])-j][j-1] and rows[len(rows[0])-j-1][j] in ["x","o"]:
+    for j in range(len(board[0])-1, 0, -1):
+        if board[len(board[0])-j-1][j]==board[len(board[0])-j][j-1] and board[len(board[0])-j-1][j] in [X,O]:
             winner_found=True
         else:
             winner_found=False
             break
-    if winner_found: return rows[0][len(rows[0])-1]
-    return "n"
+    if winner_found: return board[0][len(board[0])-1]
+    return None
 
+def winner(board):
+    winner = check_rows(board)
+    if winner is None:
+        winner = check_columns(board)
+    if winner is None:
+        winner = check_diagonals(board)
+    return winner    
 
-states=[[["x","o","o"],["o","x","o"],["x","o","o"]],[["x","o","x"],["x","o","o"],["o","x","o"]],[["x","o","o"],["x","x","x"],["o","x","o"]],[["x","x","o"],["o","o","x"],["o","x","x"]],[["x","o","o"],["o","x","o"],["o","x","x"]],[["x","",""],["","x",""],["o","",""]]]
-winner_found = False
-for state in states:
-    winner = check_row(state)
-    if winner == "n":
-        winner = check_column(state)
-    if winner == "n":
-        winner = check_diagonal(state)
-    print ("winner is : ", winner)
+boards=[[["x","o","o"],["o","x","o"],["x","o","o"]],[["x","o","x"],["x","o","o"],["o","x","o"]],[["x","o","o"],["x","x","x"],["o","x","o"]],[["x","x","o"],["o","o","x"],["o","x","x"]],[["x","o","o"],["o","x","o"],["o","x","x"]],[["x","",""],["","x",""],["o","",""]]]
+for board in boards:
+    print("board : ", board)
+    print ("winner is : ", winner(board))
