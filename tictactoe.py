@@ -133,7 +133,7 @@ def utility(board):
         return 0
 
 def max_value(board, i):
-    if terminal(board) or i > 3:
+    if terminal(board) or (len(board) > 3 and i > 3):
         return utility(board)
     value = -1000
     for action in actions(board):
@@ -143,7 +143,7 @@ def max_value(board, i):
     return value
 
 def min_value(board, i):
-    if terminal(board) or i > 3:
+    if terminal(board) or (len(board) > 3 and i > 3):
         return utility(board)
     value = 1000
     for action in actions(board):

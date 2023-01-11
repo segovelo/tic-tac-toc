@@ -18,7 +18,7 @@ largeFont = pygame.font.Font("OpenSans-Regular.ttf", 40)
 moveFont = pygame.font.Font("OpenSans-Regular.ttf", 60)
 
 
-board_size = sys.argv[1] if len(sys.argv) == 2 else 3
+board_size = int(sys.argv[1]) if len(sys.argv) == 2 else 3
 
 user = None
 board = ttt.initial_state(board_size)
