@@ -87,17 +87,18 @@ def check_columns(board):
 def check_diagonals(board):
     i = 0
     winner_found=True
-    for j in range(len(board[0])-1):
+    row = len(board[0])
+    for j in range(row-1):
         if board[j][j]!=board[j+1][j+1] or board[j][j] is EMPTY or board[j+1][j+1] is EMPTY:
             winner_found=False
             break
     if winner_found: return board[0][0]
     winner_found=True
-    for j in range(len(board[0])-1, 0, -1):
-        if board[len(board[0])-j-1][j]!=board[len(board[0])-j][j-1] or board[len(board[0])-j-1][j] is EMPTY or board[len(board[0])-j][j-1] is EMPTY:
+    for j in range(row-1, 0, -1):
+        if board[row-j-1][j]!=board[row-j][j-1] or board[row-j-1][j] is EMPTY or board[row-j][j-1] is EMPTY:
             winner_found=False
             break
-    if winner_found: return board[0][len(board[0])-1]
+    if winner_found: return board[0][row-1]
     return None
 
 def winner(board):
