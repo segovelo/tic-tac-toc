@@ -17,7 +17,7 @@ mediumFont = pygame.font.Font("OpenSans-Regular.ttf", 28)
 largeFont = pygame.font.Font("OpenSans-Regular.ttf", 40)
 moveFont = pygame.font.Font("OpenSans-Regular.ttf", 60)
 
-n = 10
+n = 3
 x_wins = 0
 o_wins = 0
 ties = 0
